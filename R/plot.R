@@ -51,3 +51,13 @@ plot_accel = function(x, x_var = "time"){
 # being spent at different frequencies.
 
 # see more in "spectral.R" in the next LectureCodes folder
+
+
+plot.spec_sig = function(x, y, ...){
+  x |>
+    pivot_longer(-freq, values_to = "Acceleration", names_to = "Channel") |>
+    # ggplot(aes_string(x = x_var, y = "Acceleration")) + # reference cols w/ str.
+    ggplot(aes(x = freq, y = Acceleration)) +
+    geom_line() +
+    facet_grid(Channel ~ .)
+}
